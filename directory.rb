@@ -1,29 +1,29 @@
-# we make a list of the students
-students = [
-  {:name => "Mario Gintili", :cohort => :february},
-  {:name => "Mikhail Dubov", :cohort => :february},
-  {:name => "Karolis Noreika", :cohort => :february},
-  {:name => "Michael Sidon", :cohort => :february},
-  {:name => "Charles De Barro,", :cohort => :february},
-  {:name => "Ruslan Vikhor", :cohort => :february},
-  {:name => "Toby Retallick", :cohort => :february},
-  {:name => "Mark Mekhaiel", :cohort => :february},
-  {:name => "Sarah Young", :cohort => :february},
-  {:name => "Hannah Wight", :cohort => :february},
-  {:name => "Khushkaran Singh", :cohort => :february},
-  {:name => "Rick brunstedt", :cohort => :february},
-  {:name => "Manjit Singh", :cohort => :february},
-  {:name => "Alex Gaudiosi", :cohort => :february},
-  {:name => "Ross Hepburn", :cohort => :february},
-  {:name => "Natascia Marches,", :cohort => :february},
-  {:name => "Tiffanie Chia", :cohort => :february},
-  {:name => "Matthew Thomas", :cohort => :february},
-  {:name => "Freddy McGroarty", :cohort => :february},
-  {:name => "Tyler Rollins", :cohort => :february},
-  {:name => "Richard Curteis", :cohort => :february},
-  {:name => "Anna Yanova", :cohort => :february},
-  {:name =>"Andrew Cumine", :cohort => :february},
-]
+def input_students
+
+  #ask for input
+  puts "Please enter the name of the student"
+  puts "To finish just hit return twice"
+
+  # create an empty array
+  students = []
+
+  #gets the first name
+  name = gets.chomp
+
+  #do this if not empty
+  while !name.empty? do
+    #add the student to the array
+    students << {:name => name, :cohort => :february}
+    puts "Now we have #{students.length} students"
+
+    #get another name
+    name = gets.chomp
+  end
+
+  # return the array of students
+  
+end
+
 
 #then we print the list
 
@@ -42,6 +42,7 @@ def print_footer(names)
   puts "Overall, we have #{names.length} great students"
 end
 
+students = input_students
 print_header
 print(students)
 print_footer(students)
