@@ -1,5 +1,8 @@
-puts "List of the students at MA"
-puts "-------"
+student_count = 9
+
+# list of students
+puts "Students in my cohort at MakersAcademy"
+puts "--------------------------------------"
 puts "Mario Gintili"
 puts "Mikhail Dubov"
 puts "Karolis Noreika"
@@ -23,8 +26,7 @@ puts "Tyler Rollins"
 puts "Richard Curteis"
 puts "Anna Yanova"
 puts "Andrew Cumine" 
+print "\n"
 
-# students count
-print "Overall, we have "
-print 9
-puts " students"
+# total students count
+puts "Overall, we have #{student_count} great students"
