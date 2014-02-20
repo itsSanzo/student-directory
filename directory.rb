@@ -23,3 +23,8 @@ puts "Tyler Rollins"
 puts "Richard Curteis"
 puts "Anna Yanova"
 puts "Andrew Cumine" 
+
+# students count
+print "Overall, we have "
+print 9
+puts " students"
