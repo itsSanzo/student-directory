@@ -24,11 +24,22 @@ students = [
 "Andrew Cumine" 
 ]
 
-puts "List of all the awesome students at MA"
-puts "--------------------------------------"
-
-students.each do |student|
-  puts student
+def print_header
+  puts "List of all the awesome students at MA"
+  puts "--------------------------------------"
 end
 
-puts "Overall, we have #{students.length} great students!"
+def print(students)
+  students.each do |student|
+    puts student
+  end
+end
+
+def print_footer(students)
+  puts "--------------------------------------"
+  puts "Overall, we have #{students.length} great students!"
+end
+
+print_header
+print(students)
+print_footer(students)
