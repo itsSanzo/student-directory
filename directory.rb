@@ -1,3 +1,5 @@
+student_count = 23
+
 puts "List of all the awesome students at MA"
 puts "--------------------------------------"
 puts "Mario Gintili"
@@ -26,5 +28,5 @@ puts "Andrew Cumine"
 
 
 print "Overall, we have "
-print 23
+print student_count
 puts " great students!"
