@@ -1,5 +1,6 @@
 @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
+
 def input_students
   puts "Please enter the names of the students, one at a time"
   puts "(To finish, just hit return twice)"
@@ -31,7 +32,7 @@ def input_students
       country = gets.chomp.capitalize
     end
 
-    @students << {:name => name, :cohort => cohort.to_sym, :age => age, :country => country}
+    add_student(name, cohort, age, country)
 
     puts "Now we have #{@students.length} students."
     puts "Add another student!"
@@ -39,10 +40,12 @@ def input_students
   end
 end
 
+
 def print_header
   puts "List of all the awesome students at MA"
   puts "--------------------------------------"
 end
+
 
 def print_students_list
   ordered_by_cohorts = []
@@ -66,7 +69,6 @@ def print_footer
   else
     puts "We only have 1 student!"
   end
-
 end
 
 
@@ -106,9 +108,11 @@ def save_students
   puts "The list has been saved to students.csv"
 end
 
+
 def add_student(name, cohort, age, country)
   @students << {:name => name, :cohort => cohort.to_sym, :age => age, :country => country}
 end
+
 
 def load_students
   file = File.open("students.csv", "r")
@@ -117,6 +121,7 @@ def load_students
     add_student(name, cohort, age, country)
   end
   file.close
+  puts "List loaded!"
 end
 
 
