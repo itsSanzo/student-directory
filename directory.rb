@@ -71,12 +71,37 @@ def print_footer(students)
 
 end
 
-students = input_students
+def interactive_menu
+  students = []
 
-if students.length > 0
-  print_header
-  print(students)
-  print_footer(students)  
-else
-  puts "The students' list is empty :("
+  loop do
+    puts "Hi, welcome to the student directory!"
+    puts "Choose a number from the menu:"
+    
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      if students.length > 0
+        print_header
+        print(students)
+        print_footer(students)  
+      else
+        puts "The students' list is empty :("
+      end
+    when "9"
+      exit
+    else
+      puts "I don't know what you mean, please try again."
+    end
+
+  end
 end
+
+interactive_menu
