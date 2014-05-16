@@ -1,8 +1,9 @@
+@months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 def input_students
   puts "Please enter the names of the students, one at a time"
   puts "(To finish, just hit return twice)"
   
-  @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   name = gets.chomp.capitalize
 
@@ -46,7 +47,7 @@ end
 def print_students_list
   ordered_by_cohorts = []
 
-  @months.map do |month|
+  @months.each do |month|
     @students.each do |student|
       ordered_by_cohorts << student if student[:cohort].to_s == month
     end
@@ -78,6 +79,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to a CSV file"
+  puts "4. Load the list of students from a CSV file"
   puts "9. Exit"
 end
 
@@ -95,15 +97,26 @@ end
 
 def save_students
   file = File.open("students.csv", "w")
-
   @students.each do |student|
     student_data = [student[:name], student[:cohort], student[:age], student[:country]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-
   file.close
   puts "The list has been saved to students.csv"
+end
+
+def add_student(name, cohort, age, country)
+  @students << {:name => name, :cohort => cohort.to_sym, :age => age, :country => country}
+end
+
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+    name, cohort, age, country = line.chomp.split(",")
+    add_student(name, cohort, age, country)
+  end
+  file.close
 end
 
 
@@ -115,6 +128,8 @@ def process(selection)
       show_students
     when "3"
       save_students
+    when "4"
+      load_students
     when "9"
       exit
     else
