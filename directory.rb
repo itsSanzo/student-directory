@@ -65,16 +65,18 @@ def print_footer(students)
 
   if students.length > 1 
     puts "Overall, we have #{students.length} great students!"
-  elsif students.length == 1
-    puts "We only have 1 student!"
   else
-    puts "No students in the list :("
+    puts "We only have 1 student!"
   end
-  
+
 end
 
 students = input_students
 
-print_header
-print(students)
-print_footer(students)
+if students.length > 0
+  print_header
+  print(students)
+  print_footer(students)  
+else
+  puts "The students' list is empty :("
+end
