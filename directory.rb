@@ -4,7 +4,6 @@ def input_students
   
   @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-  students = []
   name = gets.chomp.capitalize
 
   while !name.empty? do
@@ -31,14 +30,12 @@ def input_students
       country = gets.chomp.capitalize
     end
 
-    students << {:name => name, :cohort => cohort.to_sym, :age => age, :country => country}
+    @students << {:name => name, :cohort => cohort.to_sym, :age => age, :country => country}
 
-    puts "Now we have #{students.length} students."
+    puts "Now we have #{@students.length} students."
     puts "Add another student!"
     name = gets.chomp.capitalize
   end
-
-  students
 end
 
 def print_header
@@ -46,11 +43,11 @@ def print_header
   puts "--------------------------------------"
 end
 
-def print(students)
+def print_students_list
   ordered_by_cohorts = []
 
   @months.map do |month|
-    students.each do |student|
+    @students.each do |student|
       ordered_by_cohorts << student if student[:cohort].to_s == month
     end
   end
@@ -60,47 +57,60 @@ def print(students)
   end
 end
 
-def print_footer(students)
+def print_footer
   puts "--------------------------------------"
 
-  if students.length > 1 
-    puts "Overall, we have #{students.length} great students!"
+  if @students.length > 1 
+    puts "Overall, we have #{@students.length} great students!"
   else
     puts "We only have 1 student!"
   end
 
 end
 
-def interactive_menu
-  students = []
 
-  loop do
-    puts "Hi, welcome to the student directory!"
-    puts "Choose a number from the menu:"
-    
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
+def print_menu 
+  puts "-------------------------------------"
+  puts "Hi, welcome to the student directory!"
+  puts "-------------------------------------"
+  puts "Choose a number from the menu:"
+  puts ""
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
 
-    selection = gets.chomp
 
-    case selection
+def show_students
+  if @students.length > 0
+    print_header
+    print_students_list
+    print_footer 
+  else
+    puts "The student directory is empty :("
+  end
+end
+
+def process(selection)
+  case selection
     when "1"
-      students = input_students
+      input_students
     when "2"
-      if students.length > 0
-        print_header
-        print(students)
-        print_footer(students)  
-      else
-        puts "The students' list is empty :("
-      end
+      show_students
     when "9"
       exit
     else
       puts "I don't know what you mean, please try again."
-    end
+  end
+end
 
+
+def interactive_menu
+  @students = []
+
+  loop do
+    print_menu
+    process(gets.chomp)
   end
 end
 
