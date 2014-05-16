@@ -2,7 +2,7 @@ def input_students
   puts "Please enter the names of the students, one at a time"
   puts "(To finish, just hit return twice)"
   
-  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  @months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   students = []
   name = gets.chomp.capitalize
@@ -11,7 +11,7 @@ def input_students
     puts "Cohort joined?"
     cohort = gets.chomp.capitalize
 
-    while !months.include?(cohort)
+    while !@months.include?(cohort)
       puts "Please, don't skip the question and input a real month!"
       cohort = gets.chomp.capitalize
     end
@@ -47,8 +47,16 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-      puts "#{student[:name]}, #{student[:age]} yo, from #{student[:country]} (#{student[:cohort]} cohort)"
+  ordered_by_cohorts = []
+
+  @months.map do |month|
+    students.each do |student|
+      ordered_by_cohorts << student if student[:cohort].to_s == month
+    end
+  end
+
+  ordered_by_cohorts.each do |student|
+    puts "#{student[:name]}, #{student[:age]} yo, from #{student[:country]} (#{student[:cohort]} cohort)"
   end
 end
 
