@@ -62,7 +62,15 @@ end
 
 def print_footer(students)
   puts "--------------------------------------"
-  puts "Overall, we have #{students.length} great students!"
+
+  if students.length > 1 
+    puts "Overall, we have #{students.length} great students!"
+  elsif students.length == 1
+    puts "We only have 1 student!"
+  else
+    puts "No students in the list :("
+  end
+  
 end
 
 students = input_students
