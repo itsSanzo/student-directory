@@ -6,8 +6,16 @@ def input_students
   name = gets.chomp
 
   while !name.empty? do
-    students << {:name => name, :cohort => :february}
+    puts "Student's age?"
+    age = gets.chomp
+
+    puts "Student's country of origin?"
+    country = gets.chomp 
+
+    students << {:name => name, :cohort => :february, :age => age, :country => country}
+
     puts "Now we have #{students.length} students."
+    puts "Add another student!"
     name = gets.chomp
   end
 
@@ -20,10 +28,8 @@ def print_header
 end
 
 def print(students)
-  i = 0
-  while i < students.length do
-    puts "#{students[i][:name]} (#{students[i][:cohort]} cohort)"
-    i += 1
+  students.each do |student|
+      puts "#{student[:name]}, #{student[:age]} yo, from #{student[:country]} (#{student[:cohort]} cohort)"
   end
 end
 
